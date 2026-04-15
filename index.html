@@ -179,6 +179,155 @@
       50%  { opacity: 1; transform: scale(1.2); }
       100% { opacity: 0; transform: scale(0.5); }
     }
+
+    /* ── Gacha button ── */
+    .pull-btn {
+      margin-top: 1.8rem;
+      padding: 0.75rem 2.2rem;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 0 22px rgba(245,158,11,0.55), 0 4px 14px rgba(0,0,0,0.4);
+      animation: pulse-btn 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-btn {
+      0%,100% { box-shadow: 0 0 22px rgba(245,158,11,0.55), 0 4px 14px rgba(0,0,0,0.4); transform: scale(1); }
+      50%     { box-shadow: 0 0 38px rgba(245,158,11,0.85), 0 4px 20px rgba(0,0,0,0.4); transform: scale(1.05); }
+    }
+    .pull-btn:hover  { filter: brightness(1.15); }
+    .pull-btn:active { transform: scale(0.96); }
+
+    /* ── Gacha overlay ── */
+    .gacha-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 2000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    .gacha-overlay.active { display: flex; }
+
+    .gacha-orb {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff 0%, #c4b5fd 30%, #6366f1 70%, #1e1b4b 100%);
+      box-shadow: 0 0 60px rgba(99,102,241,0.8), 0 0 120px rgba(99,102,241,0.35);
+      display: none;
+    }
+    .gacha-orb.spinning {
+      display: block;
+      animation: orb-spin 0.55s linear infinite;
+    }
+    @keyframes orb-spin {
+      0%   { transform: rotate(0deg)   scale(1);    filter: hue-rotate(0deg); }
+      50%  { transform: rotate(180deg) scale(1.12); filter: hue-rotate(180deg); }
+      100% { transform: rotate(360deg) scale(1);    filter: hue-rotate(360deg); }
+    }
+
+    .gacha-result { display: none; text-align: center; }
+    .gacha-result.show {
+      display: block;
+      animation: result-pop 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes result-pop {
+      from { transform: scale(0.2); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .result-icon  { font-size: 4rem; }
+    .result-rank  { font-size: 1.6rem; font-weight: 900; color: #9ca3af; letter-spacing: 0.1em; margin-top: 0.4rem; }
+    .result-stars { font-size: 1.3rem; color: #6b7280; }
+    .result-name  { font-size: 0.95rem; color: #9ca3af; margin-top: 0.3rem; }
+
+    /* ── Pity guilt-trip panel ── */
+    .pity-panel {
+      display: none;
+      background: rgba(10,10,18,0.97);
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: 1rem;
+      padding: 1.4rem 1.8rem;
+      width: min(340px, 90vw);
+      text-align: center;
+      box-shadow: 0 0 40px rgba(245,158,11,0.18);
+    }
+    .pity-panel.show { display: block; animation: slide-up 0.4s ease; }
+    @keyframes slide-up {
+      from { transform: translateY(18px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .pity-header {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 0.8rem;
+    }
+    .pity-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.3rem;
+    }
+    .pity-bar-track {
+      height: 10px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .pity-bar-fill {
+      height: 100%;
+      width: 98%;
+      background: linear-gradient(90deg, #6366f1, #f59e0b);
+      border-radius: 999px;
+      box-shadow: 0 0 8px rgba(245,158,11,0.55);
+    }
+    .pity-warning {
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+      color: #ef4444;
+      font-weight: 700;
+    }
+    .pity-timer {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.2rem;
+    }
+    .pull-more-btn {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      border: none;
+      border-radius: 0.75rem;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(239,68,68,0.4);
+      animation: pulse-btn 1.2s ease-in-out infinite;
+    }
+    .pull-more-btn:hover { filter: brightness(1.12); }
+    .dismiss-link {
+      display: block;
+      margin-top: 0.55rem;
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.12);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .dismiss-link:hover { color: rgba(255,255,255,0.28); }
   </style>
 </head>
 <body>
@@ -206,8 +355,79 @@
   <div class="card">
     <p class="eyebrow">Coming Soon</p>
     <h1>Gabbo Is Coming</h1>
-    <p class="subtitle">Four days 'til Gabbo</p>
+    <p class="subtitle">Five days 'til Gabbo</p>
     <div class="divider"></div>
+    <button class="pull-btn" onclick="startPull()">✨ DAILY FREE PULL ✨</button>
   </div>
+
+  <!-- Gacha overlay -->
+  <div class="gacha-overlay" id="gacha-overlay">
+    <div class="gacha-orb" id="gacha-orb"></div>
+
+    <div class="gacha-result" id="gacha-result">
+      <div class="result-icon">🪨</div>
+      <div class="result-rank">C - RANK</div>
+      <div class="result-stars">★☆☆☆☆</div>
+      <div class="result-name">Pebble of Gabbo (Common)</div>
+    </div>
+
+    <div class="pity-panel" id="pity-panel">
+      <p class="pity-header">⚠ Guaranteed SSR Pity Progress</p>
+      <div class="pity-bar-label">
+        <span>49 / 50 pulls</span>
+        <span>NEXT PULL = SSR!</span>
+      </div>
+      <div class="pity-bar-track">
+        <div class="pity-bar-fill"></div>
+      </div>
+      <p class="pity-warning">Your pity counter RESETS at midnight!</p>
+      <p class="pity-timer" id="pity-timer">Calculating...</p>
+      <button class="pull-more-btn" onclick="closeGacha()">
+        10x PULL &nbsp;—&nbsp; 1,500 💎
+      </button>
+      <button class="dismiss-link" onclick="closeGacha()">
+        No thanks, I don't deserve rare items
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function startPull() {
+      const overlay = document.getElementById('gacha-overlay');
+      const orb     = document.getElementById('gacha-orb');
+      const result  = document.getElementById('gacha-result');
+      const pity    = document.getElementById('pity-panel');
+
+      orb.classList.remove('spinning');
+      result.classList.remove('show');
+      pity.classList.remove('show');
+      overlay.classList.add('active');
+
+      setTimeout(() => orb.classList.add('spinning'), 80);
+      setTimeout(() => { orb.classList.remove('spinning'); result.classList.add('show'); }, 2000);
+      setTimeout(() => { pity.classList.add('show'); startTimer(); }, 3100);
+    }
+
+    function closeGacha() {
+      document.getElementById('gacha-overlay').classList.remove('active');
+      clearInterval(window._timerInterval);
+    }
+
+    function startTimer() {
+      clearInterval(window._timerInterval);
+      const el = document.getElementById('pity-timer');
+      function tick() {
+        const now = new Date();
+        const midnight = new Date(now); midnight.setHours(24,0,0,0);
+        const diff = midnight - now;
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        el.textContent = `Pity resets in ${h}h ${m}m ${s}s — don't waste your progress!`;
+      }
+      tick();
+      window._timerInterval = setInterval(tick, 1000);
+    }
+  </script>
 </body>
 </html>
