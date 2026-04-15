@@ -328,6 +328,18 @@
       border: none;
     }
     .dismiss-link:hover { color: rgba(255,255,255,0.28); }
+    .gem-error {
+      display: none;
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: #ef4444;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      animation: result-pop 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .gem-error.show { display: block; }
   </style>
 </head>
 <body>
@@ -382,9 +394,10 @@
       </div>
       <p class="pity-warning">Your pity counter RESETS at midnight!</p>
       <p class="pity-timer" id="pity-timer">Calculating...</p>
-      <button class="pull-more-btn" onclick="closeGacha()">
-        10x PULL &nbsp;—&nbsp; 1,500 💎
+      <button class="pull-more-btn" id="pull-more-btn" onclick="tryPull()">
+        10x PULL &nbsp;—&nbsp; 1,500 💎 &nbsp;<span style="font-size:0.7rem;opacity:0.75;font-weight:600">($50.00)</span>
       </button>
+      <p class="gem-error" id="gem-error">❌ Insufficient gems. You only have 0 💎. <a onclick="closeGacha()" style="color:#f59e0b;cursor:pointer;text-decoration:underline">Buy more gems →</a></p>
       <button class="dismiss-link" onclick="closeGacha()">
         No thanks, I don't deserve rare items
       </button>
@@ -406,6 +419,13 @@
       setTimeout(() => orb.classList.add('spinning'), 80);
       setTimeout(() => { orb.classList.remove('spinning'); result.classList.add('show'); }, 2000);
       setTimeout(() => { pity.classList.add('show'); startTimer(); }, 3100);
+    }
+
+    function tryPull() {
+      const err = document.getElementById('gem-error');
+      err.classList.remove('show');
+      void err.offsetWidth; // reflow to re-trigger animation
+      err.classList.add('show');
     }
 
     function closeGacha() {
