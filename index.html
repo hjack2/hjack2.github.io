@@ -86,20 +86,6 @@
       margin: 1.8rem auto 0;
     }
 
-    .contact {
-      margin-top: 1.5rem;
-      font-size: 0.85rem;
-    }
-    .contact a {
-      color: #a78bfa;
-      text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-    .contact a:hover {
-      opacity: 1;
-    }
-
     /* Nyan Cat */
     @keyframes fly {
       from { transform: translateX(-160px); }
@@ -108,11 +94,6 @@
     @keyframes bob {
       0%, 100% { top: calc(100vh - 80px); }
       50%       { top: calc(100vh - 100px); }
-    }
-    @keyframes legs {
-      0%   { content: '🐾'; }
-      50%  { content: '  '; }
-      100% { content: '🐾'; }
     }
 
     .nyan {
@@ -328,6 +309,7 @@
       border: none;
     }
     .dismiss-link:hover { color: rgba(255,255,255,0.28); }
+
     /* ── Dancing anime girl ── */
     .anime-hype {
       display: flex;
@@ -463,6 +445,8 @@
       width: min(420px, 92vw);
       position: relative;
       box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 32px 80px rgba(0,0,0,0.7);
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .auth-close {
       position: absolute;
@@ -627,6 +611,79 @@
       gap: 0.4rem;
     }
     .remember-row label { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+
+    /* ── Forgot password ── */
+    .big-pass-reveal {
+      background: rgba(99,102,241,0.09);
+      border: 2px solid rgba(99,102,241,0.35);
+      border-radius: 0.85rem;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      margin: 0.8rem 0;
+    }
+    .big-pass-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .big-pass-text {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: #fbbf24;
+      font-family: monospace;
+      letter-spacing: 0.05em;
+      word-break: break-all;
+    }
+    .big-pass-note {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.6rem;
+    }
+
+    /* ── Fast food login buttons ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1rem 0 0.75rem;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+    .fastfood-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.35rem;
+      max-height: 210px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+    .fastfood-grid::-webkit-scrollbar { width: 4px; }
+    .fastfood-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+    .ff-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.42rem 0.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.65rem;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .ff-btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.18); color: #fff; }
+    .ff-btn img { width: 14px; height: 14px; flex-shrink: 0; border-radius: 2px; }
   </style>
 </head>
 <body>
@@ -684,65 +741,45 @@
       <div class="anime-hype">
         <div class="hype-bubble">OMG YOU'RE SO CLOSE!!<br>ONE MORE PULL!! 💫✨</div>
         <svg class="chibi" viewBox="0 0 100 155" width="82" height="127" xmlns="http://www.w3.org/2000/svg">
-          <!-- Twin tails (back layer) -->
           <path class="tail-l" d="M22 44 Q4 58 8 84 Q11 92 19 80 Q17 64 27 54" fill="#ff6eb4"/>
           <path class="tail-r" d="M78 44 Q96 58 92 84 Q89 92 81 80 Q83 64 73 54" fill="#ff6eb4"/>
-          <!-- Hair back -->
           <ellipse cx="50" cy="38" rx="30" ry="32" fill="#ff6eb4"/>
-          <!-- Face -->
           <ellipse cx="50" cy="45" rx="26" ry="27" fill="#fde8d0"/>
-          <!-- Hair top -->
           <ellipse cx="50" cy="20" rx="28" ry="17" fill="#ff6eb4"/>
-          <!-- Bangs -->
           <path d="M24 36 Q25 20 34 27 Q38 13 44 28 Q48 15 52 28 Q56 13 62 27 Q70 19 76 33" fill="#ff6eb4"/>
-          <!-- Left eye -->
           <ellipse cx="37" cy="45" rx="7" ry="8.5" fill="white"/>
           <ellipse cx="37" cy="46" rx="5.2" ry="6.5" fill="#7c3aed"/>
           <ellipse cx="37" cy="47" rx="3.2" ry="4" fill="#1e0a3c"/>
           <circle cx="39.5" cy="42.5" r="2.6" fill="white"/>
           <circle cx="35" cy="49" r="1.1" fill="white" opacity="0.55"/>
           <path d="M30 39 Q34 35 38 36" stroke="#1e0a3c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <!-- Right eye -->
           <ellipse cx="63" cy="45" rx="7" ry="8.5" fill="white"/>
           <ellipse cx="63" cy="46" rx="5.2" ry="6.5" fill="#7c3aed"/>
           <ellipse cx="63" cy="47" rx="3.2" ry="4" fill="#1e0a3c"/>
           <circle cx="65.5" cy="42.5" r="2.6" fill="white"/>
           <circle cx="61" cy="49" r="1.1" fill="white" opacity="0.55"/>
           <path d="M70 39 Q66 35 62 36" stroke="#1e0a3c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <!-- Blush -->
           <ellipse cx="27" cy="54" rx="6.5" ry="3.5" fill="#ffaac8" opacity="0.65"/>
           <ellipse cx="73" cy="54" rx="6.5" ry="3.5" fill="#ffaac8" opacity="0.65"/>
-          <!-- Nose -->
           <path d="M49 59 Q50 61 51 59" stroke="#e8a090" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          <!-- Mouth -->
           <path d="M43 66 Q50 73 57 66" stroke="#d4607a" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Neck -->
           <rect x="44" y="70" width="12" height="8" rx="2" fill="#fde8d0"/>
-          <!-- Left arm (raised) -->
           <g class="arm-l">
             <path d="M28 83 Q15 66 13 52" stroke="#fde8d0" stroke-width="9" fill="none" stroke-linecap="round"/>
             <circle cx="13" cy="50" r="6" fill="#fde8d0"/>
           </g>
-          <!-- Right arm (raised) -->
           <g class="arm-r">
             <path d="M72 83 Q85 66 87 52" stroke="#fde8d0" stroke-width="9" fill="none" stroke-linecap="round"/>
             <circle cx="87" cy="50" r="6" fill="#fde8d0"/>
           </g>
-          <!-- Dress body -->
           <path d="M28 79 Q30 74 50 77 Q70 74 72 79 L77 120 Q50 127 23 120 Z" fill="#a855f7"/>
-          <!-- Collar -->
           <path d="M44 77 L50 87 L56 77" fill="white" opacity="0.88"/>
-          <!-- Dress sheen -->
           <path d="M36 82 Q37 95 39 114" stroke="white" stroke-width="2.5" fill="none" opacity="0.18" stroke-linecap="round"/>
-          <!-- Skirt flare -->
           <path d="M23 114 Q50 124 77 114 L75 120 Q50 130 25 120 Z" fill="#9333ea"/>
-          <!-- Legs -->
           <rect x="35" y="120" width="11" height="23" rx="4" fill="#fde8d0"/>
           <rect x="54" y="120" width="11" height="23" rx="4" fill="#fde8d0"/>
-          <!-- Shoes -->
           <ellipse cx="40.5" cy="144" rx="8" ry="4" fill="#3b0764"/>
           <ellipse cx="59.5" cy="144" rx="8" ry="4" fill="#3b0764"/>
-          <!-- Sparkles -->
           <text class="sp1" x="1"  y="28" font-size="13">✨</text>
           <text class="sp2" x="80" y="32" font-size="11">⭐</text>
           <text class="sp3" x="4"  y="78" font-size="9">✦</text>
@@ -773,8 +810,6 @@
 
       <!-- ── SIGN UP ── -->
       <div id="pane-signup">
-
-        <!-- Step 1: collect info -->
         <div id="su-s1">
           <input class="auth-input" id="su-email" type="email"    placeholder="Email address" />
           <input class="auth-input" id="su-phone" type="tel"      placeholder="Mobile number (for MFA)" />
@@ -784,7 +819,6 @@
           <p class="auth-small">By signing up you agree to share your data with everyone.</p>
         </div>
 
-        <!-- Step 2: "secure" MFA — code shown on screen -->
         <div id="su-s2" class="auth-hidden">
           <div class="mfa-notice">
             📱 For your security, we just texted an MFA code to your mobile <strong id="su-phone-shown"></strong>.<br><br>
@@ -798,7 +832,6 @@
           <p class="auth-small">Didn't get it? <a onclick="suResend()">Resend</a> &nbsp;·&nbsp; Code is also shown above for your convenience.</p>
         </div>
 
-        <!-- Step 3: password already in use "error" -->
         <div id="su-s3" class="auth-hidden">
           <div class="auth-err-box">
             <strong>❌ Registration failed</strong><br><br>
@@ -809,13 +842,12 @@
           </div>
           <button class="auth-submit" onclick="suReset()">Try a Different Password</button>
         </div>
-
       </div>
 
       <!-- ── LOG IN ── -->
       <div id="pane-login" class="auth-hidden">
 
-        <!-- Step 1: collect credentials -->
+        <!-- Step 1: credentials + fast food buttons -->
         <div id="li-s1">
           <input class="auth-input" id="li-email" type="email"    placeholder="Email address" />
           <input class="auth-input" id="li-pass"  type="password" placeholder="Password" />
@@ -823,7 +855,50 @@
             <label><input type="checkbox" checked /> Remember me (stores password in plaintext cookie)</label>
           </div>
           <button class="auth-submit" onclick="liStep1()">Log In</button>
-          <p class="auth-small"><a onclick="liStep1()">Forgot password?</a> &nbsp;·&nbsp; We'll email it to you in plaintext.</p>
+          <p class="auth-small"><a onclick="showForgot()">Forgot password?</a> &nbsp;·&nbsp; We'll show it to you immediately.</p>
+
+          <div class="or-divider"><span>or sign in with</span></div>
+          <div class="fastfood-grid">
+            <a class="ff-btn" href="https://www.mcdonalds.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=mcdonalds.com" alt="">McDonald's</a>
+            <a class="ff-btn" href="https://www.kfc.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=kfc.com" alt="">KFC</a>
+            <a class="ff-btn" href="https://www.in-n-out.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=in-n-out.com" alt="">In-N-Out</a>
+            <a class="ff-btn" href="https://www.starbucks.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=starbucks.com" alt="">Starbucks</a>
+            <a class="ff-btn" href="https://www.dominos.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=dominos.com" alt="">Domino's</a>
+            <a class="ff-btn" href="https://www.redrooster.com.au" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=redrooster.com.au" alt="">Red Rooster</a>
+            <a class="ff-btn" href="https://www.bk.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=bk.com" alt="">Burger King</a>
+            <a class="ff-btn" href="https://www.tacobell.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=tacobell.com" alt="">Taco Bell</a>
+            <a class="ff-btn" href="https://www.subway.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=subway.com" alt="">Subway</a>
+            <a class="ff-btn" href="https://www.wendys.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=wendys.com" alt="">Wendy's</a>
+            <a class="ff-btn" href="https://www.chick-fil-a.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=chick-fil-a.com" alt="">Chick-fil-A</a>
+            <a class="ff-btn" href="https://www.pizzahut.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=pizzahut.com" alt="">Pizza Hut</a>
+            <a class="ff-btn" href="https://www.popeyes.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=popeyes.com" alt="">Popeyes</a>
+            <a class="ff-btn" href="https://www.fiveguys.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=fiveguys.com" alt="">Five Guys</a>
+            <a class="ff-btn" href="https://www.chipotle.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=chipotle.com" alt="">Chipotle</a>
+            <a class="ff-btn" href="https://www.shakeshack.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=shakeshack.com" alt="">Shake Shack</a>
+            <a class="ff-btn" href="https://www.pandaexpress.com" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=pandaexpress.com" alt="">Panda Express</a>
+            <a class="ff-btn" href="https://www.hungryjacks.com.au" target="_blank"><img src="https://www.google.com/s2/favicons?sz=32&domain=hungryjacks.com.au" alt="">Hungry Jack's</a>
+          </div>
+        </div>
+
+        <!-- Forgot password: enter email -->
+        <div id="li-fp" class="auth-hidden">
+          <p class="auth-small" style="margin-bottom:0.8rem;font-size:0.8rem;color:rgba(255,255,255,0.45)">Enter your email and we'll look up your password right now.</p>
+          <input class="auth-input" id="fp-email" type="email" placeholder="Email address" />
+          <button class="auth-submit" onclick="fpLookup()">Find My Password</button>
+          <p class="auth-small" style="margin-top:0.6rem"><a onclick="fpBack()">← Back to login</a></p>
+        </div>
+
+        <!-- Forgot password: result -->
+        <div id="li-fp-result" class="auth-hidden">
+          <div class="auth-info-box" style="margin-bottom:0.7rem">
+            ✅ Account found for <span class="leak" id="fp-email-shown"></span>!
+          </div>
+          <div class="big-pass-reveal">
+            <div class="big-pass-label">Your password is</div>
+            <div class="big-pass-text">iLoveGabbo2024!</div>
+            <div class="big-pass-note">We've also emailed this to you, your emergency contact, and posted it to your Facebook for safekeeping.</div>
+          </div>
+          <button class="auth-submit" onclick="fpBack()">Back to Login</button>
         </div>
 
         <!-- Step 2: wrong password — leaks everything -->
@@ -853,12 +928,10 @@
       const orb     = document.getElementById('gacha-orb');
       const result  = document.getElementById('gacha-result');
       const pity    = document.getElementById('pity-panel');
-
       orb.classList.remove('spinning');
       result.classList.remove('show');
       pity.classList.remove('show');
       overlay.classList.add('active');
-
       setTimeout(() => orb.classList.add('spinning'), 80);
       setTimeout(() => { orb.classList.remove('spinning'); result.classList.add('show'); }, 2000);
       setTimeout(() => { pity.classList.add('show'); startTimer(); }, 3100);
@@ -898,7 +971,6 @@
     function hide(id)  { document.getElementById(id).classList.add('auth-hidden'); }
     function inp(id)   { return document.getElementById(id).value.trim(); }
 
-    /* Sign-up */
     function suStep1() {
       const phone = inp('su-phone') || '5558675309';
       const masked = phone.replace(/\d(?=\d{4})/g, 'x');
@@ -935,7 +1007,6 @@
       document.getElementById('su-pass2').value = '';
     }
 
-    /* Log-in */
     function liStep1() {
       const email = inp('li-email') || 'user@example.com';
       const pass  = document.getElementById('li-pass').value;
@@ -955,6 +1026,19 @@
     function liReset() {
       hide('li-s2'); show('li-s1');
       document.getElementById('li-pass').value = '';
+    }
+
+    function showForgot() {
+      hide('li-s1'); hide('li-s2'); hide('li-fp-result'); show('li-fp');
+      document.getElementById('fp-email').value = document.getElementById('li-email').value;
+    }
+    function fpLookup() {
+      const email = inp('fp-email') || 'user@example.com';
+      document.getElementById('fp-email-shown').textContent = email;
+      hide('li-fp'); show('li-fp-result');
+    }
+    function fpBack() {
+      hide('li-fp'); hide('li-fp-result'); show('li-s1');
     }
 
     function startTimer() {
