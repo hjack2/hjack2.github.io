@@ -426,6 +426,207 @@
       animation: result-pop 0.3s cubic-bezier(0.34,1.56,0.64,1);
     }
     .gem-error.show { display: block; }
+
+    /* ── Auth open button ── */
+    .auth-open-btn {
+      display: block;
+      margin: 0.9rem auto 0;
+      background: none;
+      border: 1px solid rgba(99,102,241,0.4);
+      border-radius: 999px;
+      color: #a5b4fc;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 1.3rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .auth-open-btn:hover { border-color: #818cf8; color: #c7d2fe; }
+
+    /* ── Auth modal overlay ── */
+    .auth-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-overlay.active { display: flex; }
+
+    .auth-modal {
+      background: #0f0f1a;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      width: min(420px, 92vw);
+      position: relative;
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 32px 80px rgba(0,0,0,0.7);
+    }
+    .auth-close {
+      position: absolute;
+      top: 0.9rem; right: 1rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .auth-close:hover { color: rgba(255,255,255,0.7); }
+
+    .auth-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding-bottom: 0;
+    }
+    .auth-tab {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .auth-tab.active { color: #a5b4fc; border-bottom-color: #6366f1; }
+
+    .auth-input {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.7rem;
+      padding: 0.65rem 0.9rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.6rem;
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus { border-color: #6366f1; }
+    .auth-input.err   { border-color: #ef4444; }
+
+    .auth-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border: none;
+      border-radius: 0.65rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.3rem;
+      transition: filter 0.2s;
+    }
+    .auth-submit:hover { filter: brightness(1.12); }
+
+    .auth-hidden { display: none; }
+
+    /* MFA reveal box */
+    .mfa-notice {
+      background: rgba(99,102,241,0.08);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 0.7rem;
+      padding: 0.9rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.9rem;
+      line-height: 1.6;
+    }
+    .mfa-code-box {
+      margin-top: 0.6rem;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.4);
+      border-radius: 0.5rem;
+      padding: 0.55rem 0.8rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .mfa-code {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: #fbbf24;
+      display: block;
+      margin-top: 0.2rem;
+    }
+    .auth-small {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+    .auth-small a { color: rgba(255,255,255,0.4); cursor: pointer; }
+    .auth-small a:hover { color: rgba(255,255,255,0.65); }
+
+    /* Error/info boxes */
+    .auth-err-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 0.7rem;
+      padding: 0.9rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.9rem;
+      line-height: 1.65;
+    }
+    .auth-err-box strong { color: #f87171; }
+    .auth-err-box .leak  { color: #fbbf24; font-weight: 700; }
+    .auth-err-box a      { color: #a5b4fc; cursor: pointer; }
+
+    .auth-info-box {
+      background: rgba(99,102,241,0.07);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 0.7rem;
+      padding: 0.9rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.75rem;
+      line-height: 1.65;
+    }
+    .auth-info-box .leak { color: #fbbf24; font-weight: 700; }
+
+    .reveal-btn {
+      width: 100%;
+      padding: 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0.6rem;
+      color: #a5b4fc;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      transition: background 0.2s;
+    }
+    .reveal-btn:hover { background: rgba(255,255,255,0.09); }
+
+    .revealed-pass {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.35);
+      border-radius: 0.6rem;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.85rem;
+      color: #fca5a5;
+      font-family: monospace;
+      word-break: break-all;
+      margin-bottom: 0.5rem;
+    }
+
+    .remember-row {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .remember-row label { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -456,6 +657,7 @@
     <p class="subtitle">Five days 'til Gabbo</p>
     <div class="divider"></div>
     <button class="pull-btn" onclick="startPull()">✨ DAILY FREE PULL ✨</button>
+    <button class="auth-open-btn" onclick="openAuth('signup')">Join the Gabbo Waitlist →</button>
   </div>
 
   <!-- Gacha overlay -->
@@ -559,6 +761,92 @@
     </div>
   </div>
 
+  <!-- Auth modal -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-modal">
+      <button class="auth-close" onclick="closeAuth()">✕</button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+        <button class="auth-tab"        id="tab-login"  onclick="switchTab('login')">Log In</button>
+      </div>
+
+      <!-- ── SIGN UP ── -->
+      <div id="pane-signup">
+
+        <!-- Step 1: collect info -->
+        <div id="su-s1">
+          <input class="auth-input" id="su-email" type="email"    placeholder="Email address" />
+          <input class="auth-input" id="su-phone" type="tel"      placeholder="Mobile number (for MFA)" />
+          <input class="auth-input" id="su-pass"  type="password" placeholder="Password" />
+          <input class="auth-input" id="su-pass2" type="password" placeholder="Confirm password" />
+          <button class="auth-submit" onclick="suStep1()">Create Account</button>
+          <p class="auth-small">By signing up you agree to share your data with everyone.</p>
+        </div>
+
+        <!-- Step 2: "secure" MFA — code shown on screen -->
+        <div id="su-s2" class="auth-hidden">
+          <div class="mfa-notice">
+            📱 For your security, we just texted an MFA code to your mobile <strong id="su-phone-shown"></strong>.<br><br>
+            <div class="mfa-code-box">
+              Your code (displayed here for convenience):
+              <span class="mfa-code" id="su-mfa-shown">472527</span>
+            </div>
+          </div>
+          <input class="auth-input" id="su-mfa-input" type="text" placeholder="Enter MFA code" maxlength="6" />
+          <button class="auth-submit" onclick="suStep2()">Verify &amp; Register</button>
+          <p class="auth-small">Didn't get it? <a onclick="suResend()">Resend</a> &nbsp;·&nbsp; Code is also shown above for your convenience.</p>
+        </div>
+
+        <!-- Step 3: password already in use "error" -->
+        <div id="su-s3" class="auth-hidden">
+          <div class="auth-err-box">
+            <strong>❌ Registration failed</strong><br><br>
+            The password you entered is already in use by account
+            <span class="leak" id="su-email-leak"></span>.<br><br>
+            For security, we cannot allow the same password to be shared between accounts.<br><br>
+            Please choose a different password, or <a onclick="switchTab('login')">log in</a> to your existing account.
+          </div>
+          <button class="auth-submit" onclick="suReset()">Try a Different Password</button>
+        </div>
+
+      </div>
+
+      <!-- ── LOG IN ── -->
+      <div id="pane-login" class="auth-hidden">
+
+        <!-- Step 1: collect credentials -->
+        <div id="li-s1">
+          <input class="auth-input" id="li-email" type="email"    placeholder="Email address" />
+          <input class="auth-input" id="li-pass"  type="password" placeholder="Password" />
+          <div class="remember-row">
+            <label><input type="checkbox" checked /> Remember me (stores password in plaintext cookie)</label>
+          </div>
+          <button class="auth-submit" onclick="liStep1()">Log In</button>
+          <p class="auth-small"><a onclick="liStep1()">Forgot password?</a> &nbsp;·&nbsp; We'll email it to you in plaintext.</p>
+        </div>
+
+        <!-- Step 2: wrong password — leaks everything -->
+        <div id="li-s2" class="auth-hidden">
+          <div class="auth-err-box">
+            <strong>❌ Incorrect password.</strong><br><br>
+            For your account recovery, we've emailed your plaintext password to <span class="leak" id="li-email-leak"></span>.<br><br>
+            Password hint: <span class="leak" id="li-hint"></span>
+          </div>
+          <div class="auth-info-box">
+            🔒 Security notice: Your account has <strong style="color:#f87171">no 2FA enabled</strong>.
+            Last login was from <span class="leak">Pyongyang, North Korea</span>. Was that you?
+          </div>
+          <button class="reveal-btn" id="li-reveal-btn" onclick="liReveal()">👁 View my saved password (stored for your convenience ❤️)</button>
+          <div class="revealed-pass auth-hidden" id="li-revealed"></div>
+          <button class="auth-submit" onclick="liReset()">Try Again</button>
+          <p class="auth-small" style="margin-top:0.6rem"><a onclick="liReset()">Back</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script>
     function startPull() {
       const overlay = document.getElementById('gacha-overlay');
@@ -579,13 +867,94 @@
     function tryPull() {
       const err = document.getElementById('gem-error');
       err.classList.remove('show');
-      void err.offsetWidth; // reflow to re-trigger animation
+      void err.offsetWidth;
       err.classList.add('show');
     }
 
     function closeGacha() {
       document.getElementById('gacha-overlay').classList.remove('active');
       clearInterval(window._timerInterval);
+    }
+
+    /* ── Auth ── */
+    const MFA = '472527';
+    let suMfaWrong = 0;
+
+    function openAuth(tab) {
+      document.getElementById('auth-overlay').classList.add('active');
+      switchTab(tab);
+    }
+    function closeAuth() {
+      document.getElementById('auth-overlay').classList.remove('active');
+    }
+    function switchTab(tab) {
+      ['signup','login'].forEach(t => {
+        document.getElementById('pane-' + t).classList.toggle('auth-hidden', t !== tab);
+        document.getElementById('tab-'  + t).classList.toggle('active',      t === tab);
+      });
+    }
+
+    function show(id)  { document.getElementById(id).classList.remove('auth-hidden'); }
+    function hide(id)  { document.getElementById(id).classList.add('auth-hidden'); }
+    function inp(id)   { return document.getElementById(id).value.trim(); }
+
+    /* Sign-up */
+    function suStep1() {
+      const phone = inp('su-phone') || '5558675309';
+      const masked = phone.replace(/\d(?=\d{4})/g, 'x');
+      document.getElementById('su-phone-shown').textContent = masked;
+      suMfaWrong = 0;
+      document.getElementById('su-mfa-input').value = '';
+      document.getElementById('su-mfa-input').classList.remove('err');
+      hide('su-s1'); show('su-s2');
+    }
+    function suStep2() {
+      const entered = inp('su-mfa-input');
+      const input   = document.getElementById('su-mfa-input');
+      if (entered === MFA) {
+        document.getElementById('su-email-leak').textContent = inp('su-email') || 'user@example.com';
+        hide('su-s2'); show('su-s3');
+      } else {
+        suMfaWrong++;
+        input.classList.add('err');
+        input.value = '';
+        if (suMfaWrong === 1) {
+          input.placeholder = `Wrong! Hint: the code starts with "4"`;
+        } else {
+          input.placeholder = `Still wrong! Remember, the code we showed you was ${MFA}`;
+        }
+      }
+    }
+    function suResend() {
+      document.getElementById('su-mfa-shown').textContent = MFA;
+      document.getElementById('su-mfa-input').placeholder = `Resent! It's still ${MFA}`;
+    }
+    function suReset() {
+      hide('su-s3'); show('su-s1');
+      document.getElementById('su-pass').value = '';
+      document.getElementById('su-pass2').value = '';
+    }
+
+    /* Log-in */
+    function liStep1() {
+      const email = inp('li-email') || 'user@example.com';
+      const pass  = document.getElementById('li-pass').value;
+      const hint  = pass.length > 3
+        ? pass[0] + '•'.repeat(pass.length - 2) + pass[pass.length - 1] + ` (${pass.length} characters)`
+        : '(too short to hint)';
+      document.getElementById('li-email-leak').textContent = email;
+      document.getElementById('li-hint').textContent = `"${hint}"`;
+      document.getElementById('li-revealed').textContent = `Your stored password: ${pass || '(blank)'}`;
+      hide('li-s1'); show('li-s2');
+      show('li-reveal-btn');
+      hide('li-revealed');
+    }
+    function liReveal() {
+      hide('li-reveal-btn'); show('li-revealed');
+    }
+    function liReset() {
+      hide('li-s2'); show('li-s1');
+      document.getElementById('li-pass').value = '';
     }
 
     function startTimer() {
